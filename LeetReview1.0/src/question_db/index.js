@@ -1,13 +1,12 @@
 import {
-  getFirestore,
   collection,
   writeBatch,
   doc,
 } from "firebase/firestore";
 import { getFilteredLeetcodeQuestions } from "../api/index.js";
-import app from "../services/firebase.js";
+import { db } from "../services/firebase.js";
 
-const db = getFirestore(app);
+
 
 async function addQuestionsToFirestore() {
   const filteredQuestions = await getFilteredLeetcodeQuestions();
