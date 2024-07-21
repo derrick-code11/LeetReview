@@ -85,7 +85,13 @@ const SignUp = () => {
   };
 
   return (
-    <div className="background signup">
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        margin: "70px auto",
+      }}
+    >
       <Container component="main" maxWidth="xs">
         <Snackbar
           open={openSnackbar}
@@ -111,7 +117,7 @@ const SignUp = () => {
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{ marginBottom: "20px" }}>
             Sign up
           </Typography>
           <Formik
@@ -223,7 +229,7 @@ const SignUp = () => {
           </Formik>
         </Box>
       </Container>
-    </div>
+    </Box>
   );
 };
 
