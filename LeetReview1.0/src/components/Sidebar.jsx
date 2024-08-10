@@ -38,32 +38,10 @@ const Sidebar = () => {
 			),
 			active: true,
 		},
-        {
-			title: "Projects",
-			icon: (
-				<GridOutline
-					color="#555"
-					width="22px"
-					height="22px"
-				/>
-			),
-			active: false,
-		},
 		{
 			title: "Analytics",
 			icon: (
 				<PieChartOutline
-					color="#555"
-					width="22px"
-					height="22px"
-				/>
-			),
-			active: false,
-		},
-        {
-			title: "Workflows",
-			icon: (
-				<PeopleOutline
 					color="#555"
 					width="22px"
 					height="22px"
