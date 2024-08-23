@@ -34,14 +34,14 @@ const AddModal = ({ isOpen, onClose, setOpen, handleAddTask }) => {
 		}
 	};
 
-	const handleAddTag = () => {
-		if (tagTitle.trim() !== "") {
-			const { bg, text } = getRandomColors();
-			const newTag = { title: tagTitle.trim(), bg, text };
-			setTaskData({ ...taskData, tags: [...taskData.tags, newTag] });
-			setTagTitle("");
-		}
-	};
+	// const handleAddTag = () => {
+	// 	if (tagTitle.trim() !== "") {
+	// 		const { bg, text } = getRandomColors();
+	// 		const newTag = { title: tagTitle.trim(), bg, text };
+	// 		setTaskData({ ...taskData, tags: [...taskData.tags, newTag] });
+	// 		setTagTitle("");
+	// 	}
+	// };
 
 	const closeModal = () => {
 		setOpen(false);
@@ -70,11 +70,11 @@ const AddModal = ({ isOpen, onClose, setOpen, handleAddTask }) => {
                         name="title"
                         value={taskData.title}
                         onChange={handleChange}
-                        placeholder="Title"
+                        placeholder="Link to the Problem Description"
                         className="w-full h-12 px-3 outline-none rounded-md bg-slate-100 border border-slate-300 text-sm font-medium"
                     />
 
-                <select
+                {/* <select
 					name="priority"
 					onChange={handleChange}
 					value={taskData.priority}
@@ -84,24 +84,24 @@ const AddModal = ({ isOpen, onClose, setOpen, handleAddTask }) => {
 					<option value="low">Low</option>
 					<option value="medium">Medium</option>
 					<option value="high">High</option>
-				</select>
+				</select> */}
 
-                <input
+                {/* <input
 					type="text"
 					value={tagTitle}
 					onChange={(e) => setTagTitle(e.target.value)}
 					placeholder="Tag Title"
 					className="w-full h-12 px-3 outline-none rounded-md bg-slate-100 border border-slate-300 text-sm"
-				/>
+				/> */}
 
-                <button
+                {/* <button
 					className="w-full rounded-md h-9 bg-slate-500 text-amber-50 font-medium"
 					onClick={handleAddTag}
 				>
 					Add Tag
-				</button>
+				</button> */}
 
-                <div className="w-full">
+                {/* <div className="w-full">
 					{taskData.tags && <span>Tags:</span>}
 					{taskData.tags.map((tag, index) => (
 						<div
@@ -112,7 +112,14 @@ const AddModal = ({ isOpen, onClose, setOpen, handleAddTask }) => {
 							{tag.title}
 						</div>
 					))}
-				</div>
+				</div> */}
+
+				<button
+					className="w-full mt-3 rounded-md h-9 bg-orange-400 text-blue-50 font-medium"
+					onClick={handleSubmit}
+				>
+					Submit Task
+				</button>
 
             </div>
             

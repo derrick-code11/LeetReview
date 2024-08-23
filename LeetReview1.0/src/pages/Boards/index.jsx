@@ -2,6 +2,7 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useState } from "react";
 import { Board } from "../../data/board";
+import AddModal from "../../components/Modals/AddModal";
 import { onDragEnd } from "../../helpers/onDragEnd";
 import { AddOutline } from "react-ionicons";
 import Task from "../../components/Task";
@@ -27,10 +28,18 @@ const Home = () => {
 
 	return (
 		<>
-			<DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}>
+			{/* <DragDropContext onDragEnd={(result) => onDragEnd(result, columns, setColumns)}> */}
+
+			<DragDropContext
+				onDragStart={(start) => console.log('Drag started:', start)}
+				onDragEnd={(result) => {
+					console.log('Drag ended:', result);
+					onDragEnd(result, columns, setColumns);
+				}}>
+
 				<div className="w-full flex items-start justify-between md:w-[90%] px-5 pb-8 gap-10">
 					{/* 
-				className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]" */}
+					className="flex cursor-pointer items-center justify-center gap-1 py-[10px] md:w-[90%] w-full opacity-90 bg-white rounded-lg shadow-sm text-[#555] font-medium text-[15px]" */}
 					
 					{Object.entries(columns).map(([columnId, column]) => (
 						<div
@@ -58,12 +67,18 @@ const Home = () => {
 												index={index}
 											>
 												{(provided) => (
-													<>
-														<Task
-															provided={provided}
-															task={task}
-														/>
-													</>
+													<Task
+													provided={provided}
+													task={task}
+													taskId={task.id.toString()}
+												  />
+
+													// <>
+													// 	<Task
+													// 		provided={provided}
+													// 		task={task}
+													// 	/>
+													// </>
 												)}
 											</Draggable>
 										))}
@@ -82,12 +97,12 @@ const Home = () => {
 				</div>
 			</DragDropContext>
 
-			{/* <AddModal
+			<AddModal
 				isOpen={modalOpen}
 				onClose={closeModal}
 				setOpen={setModalOpen}
 				handleAddTask={handleAddTask}
-			/> */}
+			/>
 		</>
 	);
 };
