@@ -5,6 +5,7 @@ import Login from "./components/Login.jsx";
 import RequestResetLink from "./components/RequestResetLink.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Boards from "./pages/Boards"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/request-reset" element={<RequestResetLink />} />
+
           <Route
             path="/dashboard"
             element={
@@ -22,7 +24,10 @@ function App() {
                 <Dashboard />
               </ProtectedRoute>
             }
-          />
+          > 
+            <Route path="" element={<Boards />} />
+          </Route>
+
         </Routes>
       </Router>
     </>
