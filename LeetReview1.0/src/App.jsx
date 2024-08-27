@@ -5,7 +5,8 @@ import Login from "./components/Login.jsx";
 import RequestResetLink from "./components/RequestResetLink.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import Boards from "./pages/Boards"
+import Board from "./components/Board.jsx";
+// import Boards from "./pages/Boards"
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
               </ProtectedRoute>
             }
           > 
-            <Route path="" element={<Boards />} />
+            <Route path="" element={<Board/>} />
           </Route>
 
         </Routes>
