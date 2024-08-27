@@ -17,7 +17,7 @@ const Navbar = () => {
 					height={"28px"}
 				/>
 				<span className="text-orange-400 font-semibold md:text-lg text-sm whitespace-nowrap">
-					Board Name
+					Session
 				</span>
 				<ChevronDown
 					color="#fb923c"
