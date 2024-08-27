@@ -82,7 +82,35 @@ const Login = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      await signInWithEmailAndPassword(auth, values.email, values.password);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        values.email,
+        values.password
+      );
+      const user = userCredential.user;
+
+      // Check if the user's board document exists
+      const boardDocRef = doc(db, "boards", user.uid);
+      const boardDocSnap = await getDoc(boardDocRef);
+
+      if (!boardDocSnap.exists()) {
+        // If the board document doesn't exist, initialize it
+        await setDoc(boardDocRef, {
+          todo: {
+            name: "To Do",
+            items: [],
+          },
+          review: {
+            name: "To Review",
+            items: [],
+          },
+          reviewed: {
+            name: "Reviewed",
+            items: [],
+          },
+        });
+      }
+
       handleAuthSuccess("Login successful! Redirecting to dashboard...");
     } catch (error) {
       console.error(error);

@@ -69,6 +69,22 @@ const SignUp = () => {
         email: values.email,
       });
 
+      // Initialize user's board state
+      await setDoc(doc(db, "boards", user.uid), {
+        todo: {
+          name: "To Do",
+          items: [],
+        },
+        review: {
+          name: "To Review",
+          items: [],
+        },
+        reviewed: {
+          name: "Reviewed",
+          items: [],
+        },
+      });
+
       setSnackbarMessage("Registration successful! Redirecting to login...");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
