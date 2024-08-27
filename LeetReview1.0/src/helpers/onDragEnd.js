@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const onDragEnd = (result, columns, setColumns) => {
 	if (!result.destination) return;
 
