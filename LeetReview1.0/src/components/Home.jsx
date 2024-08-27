@@ -75,7 +75,7 @@ const Home = () => {
           xs={12}
           md={5}
           sx={{
-            backgroundColor: isMediumOrLarger ? "#FFE8C8" : "ghostwhite",
+            backgroundColor: isMediumOrLarger ? "#f2b45e" : "ghostwhite",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
