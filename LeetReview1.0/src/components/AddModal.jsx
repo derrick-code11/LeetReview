@@ -5,6 +5,9 @@ import { fetchQuestionData } from "../utils/getData";
 
 const AddModal = ({ isOpen, onClose, handleAddQuestion }) => {
   const [link, setLink] = useState("");
+  const [notes, setNotes] = useState("");
+  const [links, setLinks] = useState([]);
+  const [newLink, setNewLink] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,6 +41,8 @@ const AddModal = ({ isOpen, onClose, handleAddQuestion }) => {
         handleAddQuestion({
           id: uuidv4(),
           link,
+          notes,
+          links,
           ...questionData,
         });
         onClose();
@@ -49,6 +54,13 @@ const AddModal = ({ isOpen, onClose, handleAddQuestion }) => {
     }
 
     setIsLoading(false);
+  };
+
+  const handleAddLink = () => {
+    if (newLink) {
+      setLinks([...links, newLink]);
+      setNewLink("");
+    }
   };
 
   return (
@@ -81,6 +93,59 @@ const AddModal = ({ isOpen, onClose, handleAddQuestion }) => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label
+              htmlFor="notes"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Notes
+            </label>
+            <textarea
+              id="notes"
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Add your notes here..."
+              rows="3"
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              htmlFor="newLink"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
+              Add Link
+            </label>
+            <div className="flex">
+              <input
+                type="url"
+                id="newLink"
+                value={newLink}
+                onChange={(e) => setNewLink(e.target.value)}
+                className="flex-grow px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="https://example.com"
+              />
+              <button
+                type="button"
+                onClick={handleAddLink}
+                className="px-4 py-2 bg-green-500 text-white rounded-r-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+          {links.length > 0 && (
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Added Links
+              </label>
+              <ul className="list-disc list-inside">
+                {links.map((link, index) => (
+                  <li key={index}>{link}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div className="flex justify-end">
             <button
