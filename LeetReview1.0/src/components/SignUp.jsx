@@ -63,33 +63,36 @@ const SignUp = () => {
       );
       const user = userCredential.user;
 
+      // Initialize user data
       await setDoc(doc(db, "Users", user.uid), {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
       });
 
-      // Initialize user's board state
+      // Initialize user's board state with empty columns
       await setDoc(doc(db, "boards", user.uid), {
-        todo: {
-          name: "To Do",
-          items: [],
-        },
-        review: {
-          name: "To Review",
-          items: [],
-        },
-        reviewed: {
-          name: "Reviewed",
-          items: [],
+        columns: {
+          todo: {
+            name: "To Do",
+            items: [],
+          },
+          review: {
+            name: "To Review",
+            items: [],
+          },
+          reviewed: {
+            name: "Reviewed",
+            items: [],
+          },
         },
       });
 
-      setSnackbarMessage("Registration successful! Redirecting to login...");
+      setSnackbarMessage("Registration successful! Redirecting to dashboard...");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
       setTimeout(() => {
-        navigate("/login");
+        navigate("/dashboard");
       }, 3000);
     } catch (error) {
       console.error(error);
